@@ -1,0 +1,14 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'br.com.sextouvolei.app'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'br.com.sextouvolei.app'
+        minSdk 24
+        targetSdk 35
+        versionCode 9
+        versionName '0.9.0-teste'
+    }
+    buildTypes { release { minifyEnabled false } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
