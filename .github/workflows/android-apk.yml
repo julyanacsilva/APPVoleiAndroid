@@ -2,7 +2,7 @@ name: Gerar APK Sextou Volei
 on:
   workflow_dispatch:
   push:
-    branches: [main, master]
+    branches: [main, master, v10-turmas-presenca-times]
 jobs:
   build:
     runs-on: ubuntu-latest
