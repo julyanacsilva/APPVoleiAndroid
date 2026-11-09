@@ -1,0 +1,36 @@
+# Gradle / Android
+.gradle/
+**/build/
+local.properties
+.cxx/
+.externalNativeBuild/
+*.apk
+*.aab
+*.apks
+*.hprof
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Arquivos de máquina e logs
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Assinaturas: não versionar chaves privadas
+*.jks
+*.keystore
+*.key
+*.p12
+*.pem
