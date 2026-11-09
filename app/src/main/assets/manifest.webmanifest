@@ -1,6 +1,6 @@
 {
-  "name": "Sextou Vôlei",
-  "short_name": "Sextou Vôlei",
+  "name": "MatchPoint",
+  "short_name": "MatchPoint",
   "description": "Placar flip, sorteio equilibrado e ranking para suas partidas de vôlei.",
   "start_url": "./",
   "scope": "./",
