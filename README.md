@@ -1,39 +1,86 @@
-# MatchPoint ⚡🏐
+# MatchPoint 🏐⚡
 
-Aplicativo Android para **organização de partidas de vôlei**, formação de equipes e acompanhamento do placar.
+**MatchPoint** é um aplicativo Android para organizar jogos de vôlei, montar equipes e acompanhar o placar com facilidade.
+
+> **Status:** versão de testes (V10). O aplicativo funciona localmente no dispositivo; ainda não há sincronização em nuvem nem distribuição pela Play Store.
 
 ## Funcionalidades
 
-- **Turmas e jogadores:** cadastre participantes, organize grupos e registre quem está presente.
-- **Sorteio e escalação:** monte equipes equilibradas ou manualmente, com jogadores aguardando e possibilidade de entrada tardia.
-- **Edição visual:** mova jogadores entre times e a área de espera, com prévia do nome durante o arraste e destaque do destino.
-- **Placar da partida:** pontuação por gestos, números com efeito mecânico de virar folha, inversão de lados e modo de tela cheia.
-- **⚡ Placar rápido:** placar independente de cadastro, com nomes e cores das equipes, múltiplas equipes disponíveis, tela cheia, animação e histórico de sets.
-- **Partidas e ranking:** acompanhe resultados confirmados e desempenho dos jogadores.
+| Área | O que oferece |
+| --- | --- |
+| **Jogadores e turmas** | Cadastro, organização por turma, convocação e registro de presença. |
+| **Equipes** | Sorteio equilibrado, montagem manual, reservas, chegada tardia e movimentação de jogadores entre times com prévia visual. |
+| **Placar da partida** | Números com efeito mecânico de virar folha, gestos para pontuar, inversão dos lados e tela cheia. |
+| **⚡ Placar rápido** | Placar independente de cadastros, nomes e cores personalizáveis, equipes em espera, sets e tela cheia. |
+| **Partidas e ranking** | Histórico de resultados e classificação dos jogadores. |
 
-## Tecnologia
+## Tecnologias
 
-Projeto Android que utiliza uma **WebView** com interface em HTML, CSS e JavaScript, empacotada no aplicativo. Os dados da versão atual são mantidos **localmente no dispositivo**.
+- **Android:** Java e WebView.
+- **Interface:** HTML, CSS e JavaScript na pasta app/src/main/assets/.
+- **Build:** Gradle 8.9, Android Gradle Plugin 8.7.3, Java 17 e SDK Android 35.
+- **CI:** GitHub Actions, com geração automatizada de APK de teste.
 
-## Como gerar o APK
+O aplicativo carrega a interface a partir dos arquivos Android. Fontes externas podem depender de conexão com a internet.
 
-1. Abra a aba **Actions** do repositório.
-2. Selecione **Gerar APK MatchPoint**.
-3. Execute o workflow manualmente ou aguarde a execução automática após uma atualização.
-4. Após uma compilação bem-sucedida, baixe o artefato **MatchPoint-Versao-10-Android**.
-5. Extraia o arquivo `app-debug.apk` do ZIP e instale em um dispositivo Android compatível.
+## Compilar o aplicativo
 
-A compilação utiliza Java 17, Gradle e Android SDK no GitHub Actions.
+### Pelo GitHub Actions
 
-> **Atenção:** o APK do workflow é uma versão de testes (`debug`). A distribuição definitiva exigirá assinatura de lançamento e testes adicionais em dispositivos reais.
+1. Acesse **Actions** → **Gerar APK MatchPoint**.
+2. Selecione uma execução bem-sucedida ou inicie uma com **Run workflow**.
+3. Baixe o artefato **MatchPoint-Versao-10-Android**.
+4. Extraia o arquivo app-debug.apk e instale no Android.
 
-## Organização
+O workflow também executa em atualizações da branch principal e em pull requests destinados a ela.
 
-- `app/src/main/assets/index.html`: interface e lógica do MatchPoint.
-- `app/src/main/assets/manifest.webmanifest`: metadados da interface web.
-- `app/src/main/AndroidManifest.xml`: configuração do aplicativo Android.
-- `.github/workflows/android-apk.yml`: compilação automatizada do APK.
+### Localmente
+
+Com Java 17, Gradle 8.9 e o Android SDK configurados:
+
+~~~bash
+gradle :app:assembleDebug --no-daemon
+~~~
+
+O APK será gerado em app/build/outputs/apk/debug/app-debug.apk.
+
+## Estrutura do repositório
+
+~~~text
+app/
+  build.gradle                    Configurações do módulo Android
+  src/main/
+    AndroidManifest.xml           Configurações do aplicativo
+    java/.../MainActivity.java    WebView e arquivos locais
+    assets/
+      index.html                  Interface e regras do MatchPoint
+      manifest.webmanifest        Metadados da interface web
+      icons/                      Ícones da interface
+    res/drawable/icone.png        Ícone Android
+.github/workflows/android-apk.yml  Compilação automatizada
+build.gradle                       Plugins Gradle
+settings.gradle                    Nome e módulos do projeto
+gradle.properties                  Propriedades do Gradle
+README.md                          Guia do projeto
+CHANGELOG.md                       Resumo de atualizações
+.gitignore                         Arquivos locais não versionados
+~~~
+
+## Dados e limitações
+
+Os jogadores, resultados e ajustes ficam armazenados **no próprio dispositivo** (WebView/localStorage), sem conta ou backup automático. Desinstalar o aplicativo ou limpar seus dados pode apagar essas informações.
+
+Os APKs gerados pelo workflow são **debug**, não releases de produção. A assinatura de debug pode variar entre compilações; uma atualização pode exigir reinstalação, com risco de perda dos dados locais. Tenha isso em mente antes de usar o app com dados importantes.
+
+O identificador Android existente foi mantido para evitar alterações desnecessárias na identidade de instalação.
+
+## Como colaborar
+
+- Crie uma branch para alterações no aplicativo.
+- Abra um pull request e verifique se o build do GitHub Actions concluiu com sucesso.
+- Registre mudanças relevantes no [CHANGELOG.md](CHANGELOG.md).
+- Relate erros com passos para reproduzir, versão do Android e comportamento esperado.
 
 ---
 
-**MatchPoint** · Organização do vôlei com mais agilidade e uma experiência visual clara.
+Desenvolvido para tornar a organização do vôlei mais simples e visual. 💚
